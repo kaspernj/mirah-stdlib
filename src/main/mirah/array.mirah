@@ -43,10 +43,6 @@ class Array
     return @al
   end
   
-  def real_array
-    return @al
-  end
-  
   def push(obj:Object)
     @al.add(obj)
     return self
@@ -193,13 +189,7 @@ class Array
       
       return nil
     else
-      enum = Enumerator.new do |yielder|
-        al.each do |val|
-          yielder.push(val)
-        end
-      end
-      
-      return enum
+      return Enumerator.new(@al)
     end
   end
   
