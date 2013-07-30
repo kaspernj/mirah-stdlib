@@ -1,5 +1,7 @@
 package mirah.stdlib
 
+import java.util.ArrayList
+
 interface DirForeachInterface do
   def run(file:String):void; end
 end
@@ -46,18 +48,17 @@ class Dir
   end
   
   def each(blk:DirForeachInterface)
-    file = @file
+    list = @file.list
     
-    enum = Enumerator.new do |yielder|
-      files = file.list
-      
-      yielder.push(".")
-      yielder.push("..")
-      
-      files.each do |file_str|
-        yielder.push(file_str)
-      end
+    arr = ArrayList.new(list.length + 2)
+    arr.add(".")
+    arr.add("..")
+    
+    list.each do |file_i|
+      arr.add(file_i)
     end
+    
+    enum = Enumerator.new(arr)
     
     if blk != nil
       enum.each do |file_str|

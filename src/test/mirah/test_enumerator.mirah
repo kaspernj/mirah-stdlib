@@ -3,6 +3,7 @@ package mirah.stdlib
 import org.junit.Test
 import org.junit.BeforeClass
 import org.junit.AfterClass
+import org.junit.Assert
 import java.util.concurrent.atomic.AtomicBoolean
 
 $TestClass
@@ -32,7 +33,7 @@ class TestEnumerator
       raise "Expected 'test2' but got: '#{str}'." if called_times == 2 and !str.equals("test2")
     end
     
-    raise "Expected 'called_times' to be 2 but it wasnt: #{called_times}." if called_times != 2
+    Assert.assertEquals(2, called_times)
   end
   
   $BeforeClass 
@@ -68,6 +69,19 @@ class TestEnumerator
     
     raise "Never tried to set yielder thread." if @@yielder_thread_try == nil
     raise "Yielder thread has not been set." if @@yielder_thread == nil
-    raise "Expected 'yielder_thread' to be dead but it wasnt." if @@yielder_thread.alive?
+    raise "Expected 'yielder_thread' to be dead but it wasnt." if @@yielder_thread.isAlive
+  end
+  
+  $Test
+  def test_enumerator_arraylist
+    al = Array.new([Integer.new(1), Integer.new(2), Integer.new(3)])
+    
+    enum = Enumerator.new(al.arraylist)
+    
+    count = 1
+    enum.each do |obj|
+      Assert.assertEquals(Integer.new(count), obj)
+      count += 1
+    end
   end
 end

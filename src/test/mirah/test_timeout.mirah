@@ -5,7 +5,7 @@ import org.junit.Test
 $TestClass
 class TestTimeout
   $Test
-  def TestSimpleCall:void
+  def test_simple_call:void
     puts "testSimpleCall"
     
     called = false
@@ -19,7 +19,7 @@ class TestTimeout
   end
   
   $Test
-  def testTimeout
+  def test_timeout
     puts "testTimeout"
     called = false
     
@@ -40,7 +40,7 @@ class TestTimeout
   end
   
   $Test
-  def testReturnValue
+  def test_return_value
     puts "testReturnValue"
     
     res = Timeout.timeout(0.5) do
@@ -56,7 +56,7 @@ class TestTimeout
   end
   
   $Test
-  def testCustomErrors
+  def test_custom_errors
     puts "testStubbornThread"
     
     begin
@@ -86,7 +86,7 @@ class TestTimeout
   end
   
   $Test
-  def testOnInterrupt
+  def test_on_interrupt
     timeout = Timeout.new(0.25, nil)
     
     on_interrupt_called = false

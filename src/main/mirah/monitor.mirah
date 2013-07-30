@@ -1,8 +1,10 @@
 package mirah.stdlib
 
+import java.util.concurrent.locks.ReentrantLock
+
 class Monitor
   def initialize
-    @lock = java::util::concurrent::locks::ReentrantLock.new
+    @lock = ReentrantLock.new
   end
   
   def synchronize(blk:Runnable)

@@ -5,7 +5,7 @@ import org.junit.Assert
 
 class TestTime
   $Test
-  def test_time:void
+  def test_time_returns:void
     time = Time.new
     
     sec = time.sec

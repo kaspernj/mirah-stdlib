@@ -1,12 +1,15 @@
 package mirah.stdlib
 
+import java.util.concurrent.locks.ReentrantLock
+import java.lang.Thread
+
 class Mutex
   def initialize
-    @lock = java::util::concurrent::locks::ReentrantLock.new
+    @lock = ReentrantLock.new
   end
   
   def lock
-    my_code = Integer.new(System.identityHashCode(java::lang::Thread.currentThread))
+    my_code = Integer.new(System.identityHashCode(Thread.currentThread))
     
     if @locked_by != nil && @locked_by.equals(my_code)
       raise ThreadError.new("deadlock; recursive locking")
@@ -26,12 +29,12 @@ class Mutex
   end
   
   def synchronize(blk:Runnable)
-    lock()
+    lock
     
     begin
       blk.run
     ensure
-      self.unlock
+      unlock
     end
   end
 end

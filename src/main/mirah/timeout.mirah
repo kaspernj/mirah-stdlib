@@ -1,5 +1,7 @@
 package mirah.stdlib
 
+import java.lang.Thread
+
 class Timeout
   def initialize(seconds:double, error:Class = nil)
     @sleeptime = Math.round(seconds * 1000.0)
@@ -20,9 +22,9 @@ class Timeout
       expect_interrupt = false
     end
     
-    thread_chk = java::lang::Thread.new do
+    thread_chk = Thread.new do
       begin
-        java::lang::Thread.sleep(sleeptime)
+        Thread.sleep(sleeptime)
         
         if !instance.is_done
           #Sometimes it can be nice to be notified about a thread should be interrupted like on socket operations, which can block the interrupting.
