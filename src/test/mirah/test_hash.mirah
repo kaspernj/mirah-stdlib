@@ -69,4 +69,15 @@ class TestHash
     hash.clear
     Assert.assertEquals(0, hash.length)
   end
+  
+  $Test
+  def test_new_from_hash_map:void
+    hash = Hash.new(
+      "key1" => "value1",
+      "key2" => "value2"
+    )
+    
+    Assert.assertTrue hash.key?("key1")
+    Assert.assertEquals hash["key2"], "value2"
+  end
 end

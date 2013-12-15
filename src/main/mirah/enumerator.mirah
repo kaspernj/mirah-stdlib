@@ -41,7 +41,7 @@ class Enumerator
         yielder.stopped = true
         
         # Keep offering stop objects to prevent any waiting thread from becoming a zombie. If no one is accepting, then it must mean we have successfully stopped without any zombie-waiting threads.
-        loop do
+        while true
           break unless queue.offer(stop, 100, TimeUnit.MILLISECONDS)
         end
       end

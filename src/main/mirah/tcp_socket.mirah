@@ -27,7 +27,11 @@ class TCPSocket
   end
   
   def write(str:String)
-    @out.write(str.getBytes)
+    self.write(str.getBytes)
+  end
+  
+  def write(bytes:byte[])
+    @out.write(bytes)
   end
   
   def gets

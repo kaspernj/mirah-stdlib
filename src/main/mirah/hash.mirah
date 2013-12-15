@@ -16,6 +16,11 @@ class Hash
     @hash = Collections.synchronizedMap(LinkedHashMap.new)
   end
   
+  def initialize(hash_map:java.util.HashMap)
+    @hash = Collections.synchronizedMap(LinkedHashMap.new)
+    @hash.putAll(hash_map)
+  end
+  
   def real_hash
     return @hash
   end

@@ -21,7 +21,7 @@ class TestSocket
     
     raise "Unexpected line: '#{line}'." if !line.equals("test\n")
     
-    client.write("test")
+    client.write("test".getBytes)
     str = server_client.recv(4)
     
     raise "Unexpected read: '#{str}'." if !str.equals("test")

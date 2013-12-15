@@ -6,7 +6,7 @@ import org.junit.Assert
 $TestClass
 class TestArray
   $Test
-  def testAdd_and_basics:void
+  def test_add_and_basics:void
     num_2 = Integer.new(2)
     
     arr = Array.new

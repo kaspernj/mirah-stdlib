@@ -13,7 +13,7 @@ public class MirahTester{
     int countTests = 0;
     int failedTests = 0;
     boolean allPassed = true;
-
+    
     if (annotated.isEmpty( )){
       throw new Exception("No test-classes were found.");
     }

@@ -54,4 +54,8 @@ class Thread
   def keys
     return @vars.keys
   end
+  
+  def join
+    @thread.join
+  end
 end

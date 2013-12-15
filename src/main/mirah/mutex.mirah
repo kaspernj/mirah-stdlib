@@ -9,9 +9,9 @@ class Mutex
   end
   
   def lock
-    my_code = Integer.new(System.identityHashCode(Thread.currentThread))
+    my_code = System.identityHashCode(Thread.currentThread)
     
-    if @locked_by != nil && @locked_by.equals(my_code)
+    if @locked_by == my_code
       raise ThreadError.new("deadlock; recursive locking")
     end
     
@@ -20,7 +20,7 @@ class Mutex
   end
   
   def unlock
-    @locked_by = nil
+    @locked_by = 0
     @lock.unlock
   end
   
