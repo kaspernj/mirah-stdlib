@@ -3,10 +3,10 @@ package mirah.stdlib
 import org.junit.Test
 import org.junit.Assert
 
-$TestClass
-class TestArray
-  $Test
-  def test_add_and_basics:void
+import mirah.stdlib.test_helpers.TestClass
+
+RSpec.describe(Array.class) do |spec|
+  spec.it "sets, gets and basically works" do
     num_2 = Integer.new(2)
     
     arr = Array.new
@@ -66,8 +66,7 @@ class TestArray
     Assert.assertEquals(5, Integer(arr.fetch(0)).intValue)
   end
   
-  $Test
-  def test_collect:void
+  spec.it "#collect" do
     arr = Array.new
     arr[0] = "0"
     arr[1] = "1"
@@ -85,8 +84,7 @@ class TestArray
     Assert.assertEquals(5, collect_arr.length)
   end
   
-  $Test
-  def test_compact:void
+  spec.it "#compact" do
     arr = Array.new
     arr[0] = "0"
     arr[1] = nil
@@ -104,8 +102,7 @@ class TestArray
     Assert.assertEquals(nil, compact_arr[3])
   end
   
-  $Test
-  def test_pop:void
+  spec.it "#pop" do
     arr = Array.new([:a, :b, :c, :d, :e, :f])
     
     pop1_val = arr.pop
@@ -126,8 +123,7 @@ class TestArray
     Assert.assertEquals(:a, arr.first)
   end
   
-  $Test
-  def test_delete_and_keep_if:void
+  spec.it "#keep_if" do
     arr = Array.new([:a, :b, :c, :d, :e, :f])
     Assert.assertEquals(6, arr.length)
     
@@ -154,8 +150,7 @@ class TestArray
     Assert.assertEquals(:d, delete_if_res[0])
   end
   
-  $Test
-  def test_eql:void
+  spec.it "#eql" do
     arr1 = Array.new([:a, :b, :c])
     arr2 = Array.new([:a, :b, :c])
     arr3 = Array.new([:a, :b])
@@ -169,8 +164,7 @@ class TestArray
     Assert.assertFalse(arr4.eql?(arr1))
   end
   
-  $Test
-  def test_replace:void
+  spec.it "#replace" do
     arr1 = Array.new([:a, :b, :c])
     arr1.replace(Array.new([:d, :e, :f, :g]))
     
@@ -179,13 +173,11 @@ class TestArray
     Assert.assertEquals(:g, arr1.last)
   end
   
-  $Test
-  def test_join:void
+  spec.it "#join" do
     Assert.assertEquals("a;b;c", Array.new([:a, :b, :c]).join(";"))
   end
   
-  $Test
-  def test_sort:void
+  spec.it "#sort" do
     arr = Array.new([:b, :c, :a])
     sarr = arr.sort
     
@@ -214,8 +206,7 @@ class TestArray
     Assert.assertEquals(Integer.new(3), sarr[2])
   end
   
-  $Test
-  def test_uniq:void
+  spec.it "#uniq" do
     arr = Array.new([:a, :a, :b, :b, :c])
     uarr = arr.uniq
     
@@ -225,8 +216,7 @@ class TestArray
     Assert.assertEquals(:c, uarr[2])
   end
   
-  $Test
-  def test_unshift:void
+  spec.it "#unshift" do
     arr = Array.new([:b, :c])
     arr.unshift(:a)
     
@@ -236,8 +226,7 @@ class TestArray
     Assert.assertEquals(:c, arr[2])
   end
   
-  $Test
-  def test_shuffle:void
+  spec.it "#shuffle" do
     arr1 = Array.new([:a, :b, :c, :d, :e, :f, :g, :h, :i, :l, :m])
     
     arr2 = Array.new
