@@ -9,6 +9,10 @@ class Time
     return time_obj
   end
   
+  def self.now
+    Time.new
+  end
+  
   def initialize
     @millis = System.currentTimeMillis
   end

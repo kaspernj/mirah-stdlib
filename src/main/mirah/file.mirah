@@ -56,7 +56,7 @@ class File
   
   def initialize(path:String, mode:String)
     @path = path
-    @mode = "r"
+    @mode = mode
     
     self.validate_mode
   end
@@ -217,5 +217,9 @@ class File
   
   def toString
     return self.to_s
+  end
+  
+  def path
+    return @path
   end
 end

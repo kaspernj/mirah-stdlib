@@ -56,7 +56,7 @@ class Enumerator
   end
   
   #Stops the 'yielder_thread' from becoming a zombie and leaking memory.
-  def finalize
+  def finalize:void
     @yielder.stopped = true if @yielder
   end
   
