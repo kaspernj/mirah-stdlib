@@ -43,6 +43,10 @@ class Dir
     File.delete(path)
   end
   
+  def self.tmpdir
+    System.getProperty("java.io.tmpdir")
+  end
+  
   def initialize(path:String)
     @file = java::io::File.new(path)
   end
