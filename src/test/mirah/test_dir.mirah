@@ -1,11 +1,10 @@
 package mirah.stdlib
 
-import org.junit.Test
 import org.junit.Assert
 
-$TestClass
-class TestDir
-  $Test
+import mirah.stdlib.test_helpers.TestClass
+
+class TestDir < TestClass
   def test_dir:void
     count = 0
     Dir.foreach(File.dirname(ENV.fetch("_"))) do |file|
@@ -18,7 +17,6 @@ class TestDir
     Assert.assertFalse(Dir.exists?("/var/log/syslog"))
   end
   
-  $Test
   def test_dir_mk_and_rm:void
     path = "/tmp/testMkDir"
     Dir.rmdir(path) if File.exists?(path)

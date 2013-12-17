@@ -1,16 +1,12 @@
 package mirah.stdlib
 
-import org.junit.Test
+import mirah.stdlib.test_helpers.TestClass
 
-$TestClass
-class TestTimeout
-  $Test
+class TestTimeout < TestClass
   def test_simple_call:void
-    puts "testSimpleCall"
-    
     called = false
     Timeout.timeout(5.0) do
-      java::lang::Thread.sleep(500)
+      Thread.sleep(0.5)
       called = true
       return nil
     end
@@ -18,14 +14,12 @@ class TestTimeout
     raise "Expected timeout to actually call stuff." if !called
   end
   
-  $Test
   def test_timeout
-    puts "testTimeout"
     called = false
     
     begin
       Timeout.timeout(0.5) do
-        java::lang::Thread.sleep(1000)
+        Thread.sleep(1)
         called = true
         return nil
       end
@@ -39,10 +33,7 @@ class TestTimeout
     return
   end
   
-  $Test
   def test_return_value
-    puts "testReturnValue"
-    
     res = Timeout.timeout(0.5) do
       java::lang::Thread.sleep(100)
       return "test"
@@ -55,10 +46,7 @@ class TestTimeout
     return
   end
   
-  $Test
   def test_custom_errors
-    puts "testStubbornThread"
-    
     begin
       Timeout.timeout(0.5, MyWeirdError.class) do
         run = true
@@ -85,7 +73,6 @@ class TestTimeout
     return
   end
   
-  $Test
   def test_on_interrupt
     timeout = Timeout.new(0.25, nil)
     

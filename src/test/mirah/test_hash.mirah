@@ -1,11 +1,10 @@
 package mirah.stdlib
 
-import org.junit.Test
 import org.junit.Assert
 
-$TestClass
-class TestHash
-  $Test
+import mirah.stdlib.test_helpers.TestClass
+
+class TestHash < TestClass
   def test_add:void
     hash = Hash.new
     val2 = "val2"
@@ -70,7 +69,6 @@ class TestHash
     Assert.assertEquals(0, hash.length)
   end
   
-  $Test
   def test_new_from_hash_map:void
     hash = Hash.new(
       "key1" => "value1",

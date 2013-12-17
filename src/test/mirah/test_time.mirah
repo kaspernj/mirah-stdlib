@@ -1,10 +1,10 @@
 package mirah.stdlib
 
-import org.junit.Test
 import org.junit.Assert
 
-class TestTime
-  $Test
+import mirah.stdlib.test_helpers.TestClass
+
+class TestTime < TestClass
   def test_time_returns:void
     time = Time.new
     

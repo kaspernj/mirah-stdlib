@@ -1,12 +1,11 @@
 package mirah.stdlib
 
-import org.junit.Test
 import org.junit.Assert
 import java.util.concurrent.atomic.AtomicInteger
 
-$TestClass
-class TestFile
-  $Test
+import mirah.stdlib.test_helpers.TestClass
+
+class TestFile < TestClass
   def test_file:void
     raise "Tmp-dir did not exist." if !File.exists?("/tmp")
     
@@ -27,7 +26,6 @@ class TestFile
     end
   end
   
-  $Test
   def test_file_write_and_delete:void
     tmppath = "/tmp/testwrite"
     
@@ -42,7 +40,6 @@ class TestFile
     File.unlink(tmppath)
   end
   
-  $Test
   def test_file_str_handeling:void
     path = "/var/log/auth.log"
     
@@ -56,7 +53,6 @@ class TestFile
     Assert.assertEquals("/var/log", dirname)
   end
   
-  $Test
   def test_file_static_methods:void
     Assert.assertTrue(File.directory?(File.dirname(ENV.fetch("_"))))
     Assert.assertFalse(File.directory?(ENV.fetch("_")))

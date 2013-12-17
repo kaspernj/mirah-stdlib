@@ -5,6 +5,10 @@ class Thread
     return Thread.new(java::lang::Thread.currentThread)
   end
   
+  def self.sleep(seconds:double)
+    java::lang::Thread.sleep(Math.round(seconds * 1000.0))
+  end
+  
   def initialize(blk:Runnable)
     @thread = java::lang::Thread.new(blk)
     vars_spawn

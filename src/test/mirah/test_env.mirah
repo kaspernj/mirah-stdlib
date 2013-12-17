@@ -1,11 +1,10 @@
 package mirah.stdlib
 
-import org.junit.Test
 import org.junit.Assert
 
-$TestClass
-class TestEnv
-  $Test
+import mirah.stdlib.test_helpers.TestClass
+
+class TestEnv < TestClass
   def test_env
     Assert.assertEquals(ENV.fetch("_"), System.getenv("_"))
   end
