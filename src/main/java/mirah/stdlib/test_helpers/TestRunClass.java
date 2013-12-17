@@ -25,11 +25,11 @@ public class TestRunClass{
     for(Method method: clazz.getMethods()){
       if (!Modifier.isStatic(method.getModifiers())) continue;
       
-      if (method.getName().substring(0, 13).equals("before_class_")){
+      if (method.getName().length() >= 13 && method.getName().substring(0, 13).equals("before_class_")){
         beforeMethods.add(method);
       }
       
-      if (method.getName().substring(0, 11).equals("after_class_")){
+      if (method.getName().length() >= 12 && method.getName().substring(0, 12).equals("after_class_")){
         afterMethods.add(method);
       }
     }
@@ -66,10 +66,8 @@ public class TestRunClass{
   }
   
   private void runAfters(){
-    System.out.println("Running afters for " + clazz.getSimpleName());
-    
     for(Method method: afterMethods){
-      System.out.println("Running after " + clazz.getSimpleName() + "." + method.getName());
+      System.out.println("Running after " + clazz.getSimpleName() + "." + method.getName() + "().");
       TestRunStatic run = new TestRunStatic(clazz, method);
       run.execute();
       
@@ -78,10 +76,8 @@ public class TestRunClass{
   }
   
   private void runBefores(){
-    System.out.println("Running befores for " + clazz.getSimpleName());
-    
-    for(Method method: afterMethods){
-      System.out.println("Running before " + clazz.getSimpleName() + "." + method.getName());
+    for(Method method: beforeMethods){
+      System.out.println("Running before " + clazz.getSimpleName() + "." + method.getName() + "().");
       TestRunStatic run = new TestRunStatic(clazz, method);
       run.execute();
       

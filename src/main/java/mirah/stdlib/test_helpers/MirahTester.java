@@ -10,9 +10,9 @@ import org.reflections.Reflections;
 public class MirahTester{
   public static void executeMirahTestsForPackage(String pkg){
     Reflections reflections = new Reflections(pkg);
-    Set<Class<? extends TestClass>> annotated = reflections.getSubTypesOf(TestClass.class);
+    Set<Class<? extends TestClass>> testClasses = reflections.getSubTypesOf(TestClass.class);
     
-    if (annotated.isEmpty()) throw new RuntimeException("No test-classes were found.");
+    if (testClasses.isEmpty()) throw new RuntimeException("No test-classes were found.");
     
     int countTests = 0;
     int failedTests = 0;
@@ -32,7 +32,7 @@ public class MirahTester{
     ArrayList<TestRunClass> testRunClasses = new ArrayList<TestRunClass>();
     
     System.err.println("Looking for test-classes.");
-    for(Class<?> clazz: annotated){
+    for(Class<?> clazz: testClasses){
       ArrayList<Method> methodsToRun = new ArrayList<Method>();
       scanMethods(testClassName, testMethodName, methodsToRun, clazz);
       
@@ -62,14 +62,11 @@ public class MirahTester{
     for(Method method: clazz.getMethods()){
       boolean run = false;
       
-      System.out.println("Running: " + clazz.getSimpleName() + "." + method.getName());
       if (method.getName().length() >= 5 && method.getName().substring(0, 5).equals("test_")) run = true;
       
       if (run && testClassName != null && !clazz.getSimpleName().equals(testClassName)){
-        System.out.println("Classname did not match: '" + clazz.getSimpleName() + "', '" + testClassName + "'.");
         run = false;
       }else if (run && testMethodName != null && !method.getName().equals(testMethodName)){
-        System.out.println("Methodname did not match: '" + method.getName() + "', '" + testMethodName + "'.");
         run = false;
       }
       
