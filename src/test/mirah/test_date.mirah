@@ -3,9 +3,9 @@ package mirah.stdlib
 import org.junit.Test
 import org.junit.Assert
 
-$TestClass
-class TestDate
-  $Test
+import mirah.stdlib.test_helpers.TestClass
+
+class TestDate < TestClass
   def test_date:void
     
   end

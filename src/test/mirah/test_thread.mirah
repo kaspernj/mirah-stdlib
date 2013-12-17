@@ -1,12 +1,11 @@
 package mirah.stdlib
 
-import org.junit.Test
 import org.junit.Assert
 import java.util.concurrent.atomic.AtomicBoolean
 
-$TestClass
-class TestThread
-  $Test
+import mirah.stdlib.test_helpers.TestClass
+
+class TestThread < TestClass
   def test_mutex_and_monitor
     mutex_called = false
     
@@ -41,7 +40,6 @@ class TestThread
     return
   end
   
-  $Test
   def test_thread
     called = AtomicBoolean.new(false)
     

@@ -3,6 +3,8 @@ package mirah.stdlib
 import org.junit.Test
 import org.junit.Assert
 
+import mirah.stdlib.test_helpers.TestClass
+
 $TestClass
 class TestArray
   $Test

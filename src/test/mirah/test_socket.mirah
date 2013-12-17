@@ -1,11 +1,9 @@
 package mirah.stdlib;
 
-import org.junit.Test
+import mirah.stdlib.test_helpers.TestClass
 
-$TestClass
-class TestSocket
-  $Test
-  def testSocketStuff:void
+class TestSocket < TestClass
+  def test_socket_stuff:void
     server = TCPServer.new("localhost", 8085)
     
     client = TCPSocket.new("localhost", 8085)
