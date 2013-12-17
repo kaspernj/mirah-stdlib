@@ -1,14 +1,11 @@
 package mirah.stdlib
 
-import org.junit.Test
-import org.junit.BeforeClass
-import org.junit.AfterClass
 import org.junit.Assert
 import java.util.concurrent.atomic.AtomicBoolean
 
-$TestClass
-class TestEnumerator
-  $Test
+import mirah.stdlib.test_helpers.*
+
+class TestEnumerator < TestClass
   def test_enumerator:void
     enum = Enumerator.new do |yielder|
       java::lang::Thread.sleep(100)
@@ -36,8 +33,7 @@ class TestEnumerator
     Assert.assertEquals(2, called_times)
   end
   
-  $BeforeClass 
-  def self.test_gc_enum:void
+  def self.before_class_test_gc_enum:void
     called = StringBuffer.new
     enum = Enumerator.new do |yielder|
       yielder.push("test1")
@@ -62,8 +58,7 @@ class TestEnumerator
     #Notice 'test3' is never tried to be received, and the thread is now a zombie.
   end
   
-  $AfterClass
-  def self.test_gc:void
+  def self.after_class_test_gc:void
     System.gc
     java::lang::Thread.sleep 300
     
@@ -72,7 +67,6 @@ class TestEnumerator
     raise "Expected 'yielder_thread' to be dead but it wasnt." if @@yielder_thread.isAlive
   end
   
-  $Test
   def test_enumerator_arraylist
     al = Array.new([Integer.new(1), Integer.new(2), Integer.new(3)])
     
